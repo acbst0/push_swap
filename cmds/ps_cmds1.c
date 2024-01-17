@@ -22,6 +22,7 @@ void	ft_sa(t_stack *a)
 		a->num = a->next->num;
 		a->next->num = tmp;
 	}
+	write(1, "sa\n", 3);
 }
 
 void	ft_sb(t_stack *b)
@@ -34,6 +35,7 @@ void	ft_sb(t_stack *b)
 		b->num = b->next->num;
 		b->next->num = tmp;
 	}
+	write(1, "sb\n", 3);
 }
 
 void	ft_ss(t_stack *a, t_stack *b)

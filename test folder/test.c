@@ -63,6 +63,7 @@ int main()
 {
 	t_stack	*a;
 
+	a = NULL;
 	ft_lstadd_front(&a, ft_lstnew(1));
 	ft_lstadd_front(&a, ft_lstnew(2));
 

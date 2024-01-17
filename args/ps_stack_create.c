@@ -1,6 +1,6 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void	create_stack(t_stack **stack, int argc, char **argv)
+void	create_stack(t_stack **stack, int argc, char **argv)
 {
 	t_stack	*new;
 	char	**args;
@@ -22,7 +22,7 @@ static void	create_stack(t_stack **stack, int argc, char **argv)
 	}
 	index_stack(stack);
 	if (argc == 2)
-		ft_free(args);
+		free_ints(args);
 }
 
 static t_stack	*get_next_min(t_stack **stack)
