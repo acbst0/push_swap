@@ -6,7 +6,7 @@
 /*   By: abostano <abostano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 12:00:55 by abostano          #+#    #+#             */
-/*   Updated: 2024/01/12 17:15:02 by abostano         ###   ########.fr       */
+/*   Updated: 2024/01/29 19:24:04 by abostano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,19 @@ t_stack	*ft_lstlast(t_stack *lst)
 	while (last->next)
 		last = last->next;
 	return (last);
+}
+
+int	ft_lstsize(t_stack *lst)
+{
+	int		i;
+	t_stack	*tmp;
+
+	i = 0;
+	tmp = lst;
+	while (tmp)
+	{
+		tmp = tmp -> next;
+		i++;
+	}
+	return (i);
 }
