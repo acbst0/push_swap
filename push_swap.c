@@ -48,8 +48,8 @@ int main(int argc, char **argv)
 	*a = NULL;
 	*b = NULL;
 	create_stack(a, argc, argv);
-	sort_stack(a, a);
+	sort_stack(a, b);
 	free_stack(a);
-	free_stack(a);
+	free_stack(b);
 	return (0);
 }
