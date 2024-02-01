@@ -12,42 +12,43 @@
 
 #include "../push_swap.h"
 
-void	ft_rra(t_stack *a)
+int	rotate(t_stack **stack)
 {
-	t_stack	*tmp;
+	t_stack	*head;
+	t_stack	*tail;
 
-	if (a && a->next)
-	{
-		tmp = a;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = a;
-		a->back = tmp;
-		a = a->next;
-		a->back = NULL;
-		tmp->next = NULL;
-	}
+	if (ft_lstsize(*stack) < 2)
+		return (-1);
+	head = *stack;
+	tail = ft_lstlast(head);
+	*stack = head->next;
+	head->next = NULL;
+	tail->next = head;
+	return (0);
 }
 
-void	ft_rrb(t_stack *b)
+int	ra(t_stack **stack_a)
 {
-	t_stack	*tmp;
-
-	if (b && b->next)
-	{
-		tmp = b;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = b;
-		b->back = tmp;
-		b = b->next;
-		b->back = NULL;
-		tmp->next = NULL;
-	}
+	if (rotate(stack_a) == -1)
+		return (-1);
+	ft_putendl_fd("ra", 1);
+	return (0);
 }
 
-void	ft_rrr(t_stack *a, t_stack *b)
+int	rb(t_stack **stack_b)
 {
-	ft_rra(a);
-	ft_rrb(b);
+	if (rotate(stack_b) == -1)
+		return (-1);
+	ft_putendl_fd("rb", 1);
+	return (0);
+}
+
+int	rr(t_stack **stack_a, t_stack **stack_b)
+{
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+		return (-1);
+	rotate(stack_a);
+	rotate(stack_b);
+	ft_putendl_fd("rr", 1);
+	return (0);
 }

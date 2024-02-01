@@ -12,62 +12,50 @@
 
 #include "../push_swap.h"
 
-void	ft_sa(t_stack *a)
+int	swap(t_stack **stack)
 {
-	int		tmp;
+	t_stack	*head;
+	t_stack	*next;
+	int		tmp_val;
+	int		tmp_index;
 
-	if (a && a->next)
-	{
-		tmp = a->num;
-		a->num = a->next->num;
-		a->next->num = tmp;
-	}
-	write(1, "sa\n", 3);
+	if (ft_lstsize(*stack) < 2)
+		return (-1);
+	head = *stack;
+	next = head->next;
+	if (!head && !next)
+		ft_error("Error occured while swapping!");
+	tmp_val = head->num;
+	tmp_index = head->index;
+	head->num = next->num;
+	head->index = next->index;
+	next->num = tmp_val;
+	next->index = tmp_index;
+	return (0);
 }
 
-void	ft_sb(t_stack *b)
+int	sa(t_stack **stack_a)
 {
-	int		tmp;
-
-	if (b && b->next)
-	{
-		tmp = b->num;
-		b->num = b->next->num;
-		b->next->num = tmp;
-	}
-	write(1, "sb\n", 3);
+	if (swap(stack_a) == -1)
+		return (-1);
+	ft_putendl_fd("sa", 1);
+	return (0);
 }
 
-void	ft_ss(t_stack *a, t_stack *b)
+int	sb(t_stack **stack_b)
 {
-	ft_sa(a);
-	ft_sb(b);
+	if (swap(stack_b) == -1)
+		return (-1);
+	ft_putendl_fd("sb", 1);
+	return (0);
 }
 
-void	ft_pa(t_stack *a, t_stack *b)
-{
-	t_stack	*tmp;
-
-	if (b)
-	{
-		tmp = b->next;
-		b->next = a;
-		a->back = b;
-		a = b;
-		b = tmp;
-	}
-}
-
-void	ft_pb(t_stack *a, t_stack *b)
-{
-	t_stack	*tmp;
-
-	if (a)
-	{
-		tmp = a->next;
-		a->next = b;
-		b->back = a;
-		b = a;
-		a = tmp;
-	}
+int	ss(t_stack **stack_a, t_stack **stack_b)
+{	
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
+		return (-1);
+	swap(stack_a);
+	swap(stack_b);
+	ft_putendl_fd("ss", 1);
+	return (0);
 }

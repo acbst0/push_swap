@@ -12,42 +12,45 @@
 
 #include "../push_swap.h"
 
-void	ft_ra(t_stack *a)
+int	push(t_stack **stack_to, t_stack **stack_from)
 {
 	t_stack	*tmp;
+	t_stack	*head_to;
+	t_stack	*head_from;
 
-	if (a && a->next)
+	if (ft_lstsize(*stack_from) == 0)
+		return (-1);
+	head_to = *stack_to;
+	head_from = *stack_from;
+	tmp = head_from;
+	head_from = head_from->next;
+	*stack_from = head_from;
+	if (!head_to)
 	{
-		tmp = a;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = a;
-		a->back = tmp;
-		a = a->next;
-		a->back = NULL;
-		tmp->next = NULL;
+		head_to = tmp;
+		head_to->next = NULL;
+		*stack_to = head_to;
 	}
+	else
+	{
+		tmp->next = head_to;
+		*stack_to = tmp;
+	}
+	return (0);
 }
 
-void   ft_rb(t_stack *b)
+int	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*tmp;
-
-	if (b && b->next)
-	{
-		tmp = b;
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = b;
-		b->back = tmp;
-		b = b->next;
-		b->back = NULL;
-		tmp->next = NULL;
-	}
+	if (push(stack_a, stack_b) == -1)
+		return (-1);
+	ft_putendl_fd("pa", 1);
+	return (0);
 }
 
-void   ft_rr(t_stack *a, t_stack *b)
+int	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_ra(a);
-	ft_rb(b);
+	if (push(stack_b, stack_a) == -1)
+		return (-1);
+	ft_putendl_fd("pb", 1);
+	return (0);
 }

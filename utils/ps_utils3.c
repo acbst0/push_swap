@@ -34,3 +34,34 @@ int	ft_atoi(const char *str)
 	}
 	return (result * flag);
 }
+
+int	is_sorted(t_stack **stack)
+{
+	t_stack	*head;
+
+	head = *stack;
+	while (head && head->next)
+	{
+		if (head->num > head->next->num)
+			return (0);
+		head = head->next;
+	}
+	return (1);
+}
+
+int	get_distance(t_stack **stack, int index)
+{
+	t_stack	*head;
+	int		distance;
+
+	distance = 0;
+	head = *stack;
+	while (head)
+	{
+		if (head->index == index)
+			break ;
+		distance++;
+		head = head->next;
+	}
+	return (distance);
+}

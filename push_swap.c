@@ -12,6 +12,29 @@
 
 # include "push_swap.h"
 
+void	free_stack(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack	*tmp;
+
+	head = *stack;
+	while (head)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+	free(stack);
+}
+
+static void	sort_stack(t_stack **stack_a, t_stack **stack_b)
+{
+	if (ft_lstsize(*stack_a) <= 5)
+		simple_sort(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b);
+}
+
 int main(int argc, char **argv)
 {
 	t_stack	**a;
@@ -25,4 +48,8 @@ int main(int argc, char **argv)
 	*a = NULL;
 	*b = NULL;
 	create_stack(a, argc, argv);
+	sort_stack(a, a);
+	free_stack(a);
+	free_stack(a);
+	return (0);
 }

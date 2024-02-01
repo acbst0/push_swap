@@ -24,42 +24,45 @@ typedef struct		s_stack
 	struct s_stack	*back;
 }	t_stack;
 
-//Push swap functions
-void	ft_sa(t_stack *a);
-void	ft_sb(t_stack *b);
-void	ft_ss(t_stack *a, t_stack *b);
-void	ft_pa(t_stack *a, t_stack *b);
-void	ft_pb(t_stack *a, t_stack *b);
-void	ft_ra(t_stack *a);
-void	ft_rb(t_stack *b);
-void	ft_rr(t_stack *a, t_stack *b);
-void	ft_rra(t_stack *a);
-void	ft_rrb(t_stack *b);
-void	ft_rrr(t_stack *a, t_stack *b);
-//List functions (utils 1)
+//args
+void	ft_check_args(int argc, char **argv);
+void	free_ints(char **ints);
+void	create_stack(t_stack **stack, int argc, char **argv);
+void	index_stack(t_stack **stack);
+//cmds
+int		sa(t_stack **stack_a);
+int		sb(t_stack **stack_b);
+int		ss(t_stack **stack_a, t_stack **stack_b);
+int		pa(t_stack **stack_a, t_stack **stack_b);
+int		pb(t_stack **stack_a, t_stack **stack_b);
+int		ra(t_stack **stack_a);
+int		rb(t_stack **stack_b);
+int		rr(t_stack **stack_a, t_stack **stack_b);
+int		rra(t_stack **stack_a);
+int		rrb(t_stack **stack_b);
+int		rrr(t_stack **stack_a, t_stack **stack_b);
+//sort
+void	simple_sort(t_stack **stack_a, t_stack **stack_b);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
+//utils
 t_stack	*ft_lstnew(int content);
 void	ft_lstadd_front(t_stack **lst, t_stack *new);
 t_stack	*ft_lstlast(t_stack *lst);
-//Checking functions
-void	ft_check_args(int argc, char **argv);
-void	free_ints(char **ints);
-//Utils 2
+int		ft_lstsize(t_stack *lst);
 char	**ft_split(const char *s, char c);
 size_t	ft_strlen(const char *a);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
-//Utils 3
-int	ft_useless(const char *s);
-int	ft_atoi(const char *str);
-void	index_stack(t_stack **stack);
-//Utils 4
+int		ft_useless(const char *s);
+int		ft_atoi(const char *str);
+int		is_sorted(t_stack **stack);
+int		get_distance(t_stack **stack, int index);
 void	ft_error(char *msg);
-int	ft_isdigit(int a);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putstr_fd(char *s, int fd);
+int		ft_isdigit(int a);
 char	*ft_strdup(const char *str);
-//ARGS
-void	create_stack(t_stack **stack, int argc, char **argv);
-void	index_stack(t_stack **stack);
+//others
+void	free_stack(t_stack **stack);
 
 #endif
